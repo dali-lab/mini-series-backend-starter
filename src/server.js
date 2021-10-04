@@ -2,6 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import router from './router';
+
+dotenv.config();
 
 // initialize
 const app = express();
@@ -25,10 +30,20 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads
 
 // additional init stuff should go before hitting the routing
 
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/project';
+
+mongoose.connect(mongoURI).then(() => {
+  console.log('connected to database:', mongoURI);
+}).catch((err) => {
+  console.log('error: could not connect to db:', err);
+});
+
 // default index route
 app.get('/', (req, res) => {
   res.send('hello world');
 });
+
+app.use('/', router);
 
 // START THE SERVER
 // =============================================================================
