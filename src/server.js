@@ -4,6 +4,7 @@ import path from 'path';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import router from './router';
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 
 // additional init stuff should go before hitting the routing
+app.use(passport.initialize());
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/project';
 
