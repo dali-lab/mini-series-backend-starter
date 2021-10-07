@@ -32,3 +32,12 @@ export const getUserById = async (id) => {
   const user = await User.findById(id);
   return user;
 };
+
+export const getAllUsers = async () => {
+  const users = await User.find({});
+  return users;
+};
+
+export const deleteUser = async (id) => {
+  await User.findByIdAndDelete(id);
+};

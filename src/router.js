@@ -6,7 +6,8 @@ const router = Router();
 
 router.route('/users')
   .get(requireAuth, userController.getUsers)
-  .post(userController.signUpUser);
+  .post(userController.signUpUser)
+  .delete(userController.deleteUser);
 
 router.route('/signin')
   .post(requireSignin, userController.signInUser);

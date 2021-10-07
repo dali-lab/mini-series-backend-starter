@@ -1,0 +1,16 @@
+<script>
+  async function deleteUsers() {
+    const urls = [];
+    $('input[type=checkbox]').each(function () {
+      if (!this.checked) return;
+
+      const id = this.id;
+      if (!id) return;
+
+      urls.push('/users?id=' + id);
+    });
+
+    await Promise.all(urls.map((url) => axios.delete(url)));
+    window.location.reload();
+  }
+</script>

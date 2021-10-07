@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import router from './router';
+import { getAllUsers } from './services/userService';
 
 dotenv.config();
 
@@ -40,12 +41,13 @@ mongoose.connect(mongoURI).then(() => {
   console.log('error: could not connect to db:', err);
 });
 
-// default index route
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
-
 app.use('/', router);
+
+app.get('/userview', async (req, res) => {
+  const users = await getAllUsers();
+  console.log(path.join(__dirname, '../src/views'));
+  res.render('index.ejs', { users });
+});
 
 // START THE SERVER
 // =============================================================================

@@ -42,3 +42,16 @@ export const signInUser = async (req, res) => {
     return res.status(500).json({ error: e.message || 'There was an error.' });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.query;
+    if (!id) return res.status(400);
+
+    await userService.deleteUser(id);
+    return res.status(200).send('Successfully deleted user');
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: e.message || 'There was an error.' });
+  }
+};

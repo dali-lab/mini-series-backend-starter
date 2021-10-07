@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>My Webpage</title>
+    <link href="/style.css"rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <%- include('partials/scripts') %>
+  </head>
+  <body class="test">
+    <div class="container">
+      <% if (users.length > 0) { %>
+        <% users.forEach((user, i) => { %>
+          <div class="user">
+            <input type="checkbox" id="<%=user.id%>" name="selected-<%=i%>" >
+            <h2>Email: <%=user.email%></h2>
+            <h3>The Office quote: <%=user.quote%></h3>
+          </div>
+        <% }); %>
+      <% } %>
+
+      <button type="submit" onclick="deleteUsers()">Delete</button>
+    </div>
+  </body>
+</html>
