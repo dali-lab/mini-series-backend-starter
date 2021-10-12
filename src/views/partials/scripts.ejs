@@ -1,10 +1,11 @@
 <script>
+  // here we can modularize our javascript scripts and embed them directly into the head of the webpage
   async function deleteUsers() {
     const urls = [];
-    $('input[type=checkbox]').each(function () {
+    $('input[type=checkbox]').each(function () { // we use jquery to get each checked checkbox
       if (!this.checked) return;
 
-      const id = this.id;
+      const id = this.id; // each checkbox should be instantiated with the user's id as the DOM element id
       if (!id) return;
 
       urls.push('/users?id=' + id);

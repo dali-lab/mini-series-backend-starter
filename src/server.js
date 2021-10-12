@@ -43,9 +43,10 @@ mongoose.connect(mongoURI).then(() => {
 
 app.use('/', router);
 
+// here we render our static webpage
+// note that we can directly pass users in as a parameter to the page
 app.get('/userview', async (req, res) => {
   const users = await getAllUsers();
-  console.log(path.join(__dirname, '../src/views'));
   res.render('index.ejs', { users });
 });
 
