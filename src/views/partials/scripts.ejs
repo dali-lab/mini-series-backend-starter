@@ -13,4 +13,14 @@
     await Promise.all(urls.map((url) => axios.delete(url)));
     window.location.reload();
   }
+
+  async function addUser() {
+    const firstName = $('input[name=firstName]').val();
+    const lastName = $('input[name=lastName]').val();
+    const email = $('input[name=email]').val();
+    const password = $('input[name=email]').val();
+
+    await axios.post('/users', {firstName, lastName, email, password});
+    window.location.reload();
+  }
 </script>
